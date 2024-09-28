@@ -164,6 +164,22 @@ Before you start, ensure you have the following:
 - Terraform installed (you can install it from [here](https://learn.hashicorp.com/tutorials/terraform/install-cli)).
 - An S3 bucket and a DynamoDB table for storing and locking the Terraform state (if using remote state storage).
 
+## Backend Configuration for Storing Terraform State
+
+To store your Terraform state remotely, configure the backend using an S3 bucket and a DynamoDB table for state locking. Create a file named `state-backend.tf`:
+
+```hcl
+terraform {
+  backend "s3" {
+    bucket         = "your-terraform-state-bucket"
+    key            = "path/to/your/terraform.tfstate"
+    region         = "eu-central-1"
+    dynamodb_table = "terraform-lock-table"
+    encrypt        = true
+  }
+}
+```
+
 ### How to Initialize Terraform project
 
   ''''bash
