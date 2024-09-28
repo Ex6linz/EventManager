@@ -1,0 +1,53 @@
+version: '3.9'
+services:
+  
+  db:
+    image: postgres:16.4
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: event_manager_db
+    container_name: db
+    networks:
+      - network
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./EventManager-BE
+      dockerfile: Dockerfile
+    expose:
+      - 5000 
+    container_name: backend
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/event_manager_db
+    networks:
+      - network
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./EventManager-FE
+      dockerfile: Dockerfile
+      args:
+        - VITE_BACKEND_URL=http://localhost:5000
+    container_name: frontend
+    environment:
+      - VITE_BACKEND_URL=http://localhost:5000
+    networks:
+      - network
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
+
+networks:
+  network:
+    driver: bridge
