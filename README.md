@@ -22,3 +22,30 @@ Before you begin, ensure you have the following installed:
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 - [AWS CLI](https://aws.amazon.com/cli/) configured with appropriate permissions
+
+## Building Docker Images
+
+### Frontend (React)
+
+1. **Navigate to the Frontend Directory**
+
+   ```bash
+   cd EventManager-FE
+   docker build -t frontend:1.0 . 
+   docker push your-dockerhub-username/frontend:1.0
+
+### Backend (Python-Flask)
+2. **Navigate to the API Directory**
+   ```bash
+   cd EventManager-BE
+   docker build -t backend:1.0 . 
+   docker push your-dockerhub-username/backend:1.0
+
+### Docker-compose
+3. **Deploy with docker-compose**
+   
+   Above we had image creation while my docker-compose configuration includes build at its level so I use
+   ```bash
+   docker compose up -d --build
+
+
