@@ -120,14 +120,16 @@ The application requires environment variables that are managed using ConfigMap 
 
 Create a file named `configmap.yaml` to store non-sensitive environment variables.
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: app-config
-data:
-  DATABASE_URL: "postgresql://postgres:postgres@postgres-service:5432/event_manager_db"
+  ```yaml
+  apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: app-config
+  data:
+    DATABASE_URL: "postgresql://postgres:postgres@postgres-service:5432/event_manager_db"
+    API_KEY: "abcdef123456"
 ```
+
 ### SECRET
 
    ''''yaml
@@ -139,6 +141,7 @@ data:
    data:
         POSTGRES_PASSWORD: c3VwZXJzZWNyZXRwYXNz  # Base64 encoded password
         SECRET_KEY: c3VwZXJzZWNyZXRrZXk=         # Base64 encoded secret key
+
 ### TO apply ConfigMap and Secret to your Kubernetes Cluster, run:
     ''''bash
     kubectl apply -f configmap.yaml
@@ -148,3 +151,31 @@ data:
     ''''bash
     kubectl apply -f api-deployment.yaml 
     etc.
+
+# Deploying Infrastructure with Terraform
+
+This guide explains how to use **Terraform** to deploy the infrastructure required for the **Event Manager** application on AWS. It includes provisioning of EC2 instances, an RDS PostgreSQL database, and necessary network resources like VPC, subnets, and security groups.
+
+## Prerequisites
+
+Before you start, ensure you have the following:
+
+- AWS CLI installed and configured with your credentials.
+- Terraform installed (you can install it from [here](https://learn.hashicorp.com/tutorials/terraform/install-cli)).
+- An S3 bucket and a DynamoDB table for storing and locking the Terraform state (if using remote state storage).
+
+### How to Initialize Terraform project
+
+  ''''bash
+  terraform init
+
+### Plan the Infrastructure
+
+  ''''bash
+  terraform plan
+
+### Apply the configuration
+
+  ''''bash
+  terraform apply
+  
