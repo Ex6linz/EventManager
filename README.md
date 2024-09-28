@@ -127,7 +127,7 @@ metadata:
   name: app-config
 data:
   DATABASE_URL: "postgresql://postgres:postgres@postgres-service:5432/event_manager_db"
-
+```
 ### SECRET
 
    ''''yaml
