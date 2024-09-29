@@ -132,7 +132,7 @@ Create a file named `configmap.yaml` to store non-sensitive environment variable
 
 ### SECRET
 
-     ''''
+     
      apiVersion: v1
      kind: Secret
       metadata:
@@ -143,12 +143,12 @@ Create a file named `configmap.yaml` to store non-sensitive environment variable
         SECRET_KEY: c3VwZXJzZWNyZXRrZXk=         # Base64 encoded secret key
 
 ### TO apply ConfigMap and Secret to your Kubernetes Cluster, run:
-    ''''
+    
     kubectl apply -f configmap.yaml
     kubectl apply -f secret.yaml
 
 ### The sequence is repeated for other files to be deployed using k8s 
-    ''''
+    
     kubectl apply -f api-deployment.yaml 
     etc.
 
@@ -182,16 +182,16 @@ terraform {
 
 ### How to Initialize Terraform project
 
-    ''''
+    
     terraform init
 
 ### Plan the Infrastructure
 
-    ''''
+    
     terraform plan
 
 ### Apply the configuration
 
-    ''''
+    
     terraform apply
   
