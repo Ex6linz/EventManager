@@ -132,13 +132,13 @@ Create a file named `configmap.yaml` to store non-sensitive environment variable
 
 ### SECRET
 
-   ''''yaml
-   apiVersion: v1
-   kind: Secret
-   metadata:
-        name: app-secret
-   type: Opaque
-   data:
+     ''''yaml
+     apiVersion: v1
+     kind: Secret
+      metadata:
+         name: app-secret
+     type: Opaque
+     data:
         POSTGRES_PASSWORD: c3VwZXJzZWNyZXRwYXNz  # Base64 encoded password
         SECRET_KEY: c3VwZXJzZWNyZXRrZXk=         # Base64 encoded secret key
 
@@ -182,16 +182,16 @@ terraform {
 
 ### How to Initialize Terraform project
 
-  ''''bash
-  terraform init
+    ''''bash
+    terraform init
 
 ### Plan the Infrastructure
 
-  ''''bash
-  terraform plan
+    ''''bash
+    terraform plan
 
 ### Apply the configuration
 
-  ''''bash
-  terraform apply
+    ''''bash
+    terraform apply
   
